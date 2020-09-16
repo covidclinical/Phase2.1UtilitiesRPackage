@@ -2,7 +2,9 @@
 % Please edit documentation in R/createProject.R
 \name{createProject}
 \alias{createProject}
-\title{Creates repository infrastructure for a 4CE Phase 2 Project}
+\title{Creates repository infrastructure for a 4CE Phase 2.1 Project.  Creates local repositories,
+prompts for a GitHub username, and tries to create the corresponding GitHub repositories
+and push inital contents.}
 \usage{
 createProject(projectName, workingDirectory = "/RDevelopment")
 }
@@ -12,8 +14,8 @@ createProject(projectName, workingDirectory = "/RDevelopment")
 \item{workingDirectory}{The directory in which the project repositories will be created.}
 }
 \description{
-Creates repository infrastructure for a 4CE Phase 2 Project
+Creates repository infrastructure for a 4CE Phase 2.1 Project.  Creates local repositories,
+prompts for a GitHub username, and tries to create the corresponding GitHub repositories
+and push inital contents.
 }
 \keyword{4CE}
-\keyword{Phase2}
-\keyword{Project}

@@ -21,5 +21,3 @@ emit4CeFunctionStub(projectName, functionName, commentPreamble,
 Returns the text of the empty R function call stub for the project
 }
 \keyword{4CE}
-\keyword{Phase2}
-\keyword{Project}
