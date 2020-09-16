@@ -72,7 +72,7 @@ This `createProject(...)` function call will generate all of the repositories re
 the local copies of these repositories are created under `/RDevelopment/` in the container. You can provide an alternative location by specifying the `workingDirectory` argument to `createProject(...)`.
 
 You would now modify `runAnalysis()`, `validateAnalysis()`, `submitAnalysis()` inside of the 
-`Phase2MyAnalysisRPackage` repository.  Note that the R package lives in a subdirectory 
+`Phase2.1MyAnalysisRPackage` repository.  Note that the R package lives in a subdirectory 
 of the repository named `FourCePhase2.1[PROJECT_NAME]` (`FourCePhase2.1MyAnalysis` in our example). The `README.md` for your package comes pre-populated with example code to install your package in R from this subdirectory.  You can add as much additional supporting code as you would like 
 to your package in additional files, or in the files for these three functions.  For more information on developing R packages in general, see http://r-pkgs.had.co.nz
 
@@ -104,7 +104,7 @@ E.g., from the Linux command line in the container, we would:
 Add your changes to staging:
 
 ```shell
-cd /RDevelopment/Phase2MyAnalysisRPackage
+cd /RDevelopment/Phase2.1MyAnalysisRPackage
 git add -A
 ```
 
@@ -125,7 +125,7 @@ If all of this has worked correctly, you should be able to visit:
 
 <pre>https://github.com/covidclinical/Phase2.1[PROJECT_NAME]]RPackage</pre>
 
-(https://github.com/covidclinical/Phase2MyAnalysisRPackage in our example)
+(https://github.com/covidclinical/Phase2.1MyAnalysisRPackage in our example)
 
 and see the modifications that you pushed.  You can install your package using the code displayed on the README (main) page for the repository, e.g.:
 
