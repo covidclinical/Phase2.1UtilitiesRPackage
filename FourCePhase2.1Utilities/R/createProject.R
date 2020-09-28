@@ -190,13 +190,30 @@ emit4CeFunctionStubToFile <- function (projectName, functionName, commentPreambl
 
 createPhase2.1Stubs <- function (projectName, workingDirectory, privateSummariesRepositoryName, publicSummariesRepositoryName) {
 
+    runAnalysisFunctionBody = '
+
+    ## make sure this instance has the latest version of the quality control and data wrangling code available
+    devtools::install_github("https://github.com/covidclinical/Phase2.1DataRPackage", subdir="FourCePhase2.1Data", upgrade=FALSE)
+
+    ## get the site identifier assocaited with the files stored in the /4ceData/Input directory that 
+    ## is mounted to the container
+    currSiteId = FourCePhase2.1Data::getSiteId()
+
+    ## run the quality control
+    FourCePhase2.1Data::runQC(currSiteId)
+
+    ## DO NOT CHANGE ANYTHING ABOVE THIS LINE
+    ## To Do: implement analytic workflow, saving results to a site-specific 
+    ## file to be sent to the coordinating site later via submitAnalysis()
+    '
+
     ## runAnalysis()
     emit4CeFunctionStubToFile(
         projectName=projectName, 
         functionName="runAnalysis", 
         workingDirectory=workingDirectory,
         commentPreamble="Runs the analytic workflow",
-        functionBody="\t#TODO: implement analysis"
+        functionBody=runAnalysisFunctionBody
     )
 
     ## validateAnalysis()
