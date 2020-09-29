@@ -38,7 +38,7 @@ interactiveSetGitCredentials <- function (protocol, host) {
     password = ""
 
     while (TRUE) {
-        username = readline(paste0("Enter your username for ", host, ": "))
+        username = getPass::getPass(paste0("Enter your username for ", host, ": "))
         password = getPass::getPass(paste0("Enter your password for ", host, ": "))
 
         ans = readline("Would you like to review your username and password before caching them? [y/N/cancel] ")
