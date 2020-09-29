@@ -40,13 +40,14 @@ docker run --rm --name 4ce -d -v /tmp:/RDevelopment \
                             dbmi/4ce-analysis:latest
 ```
 
-**RStudio cannot be used for the next steps** because interactive password authentication to GitHub won't work.
-Connect to the container via ssh and run R, e.g.:
+Either connect to the container via ssh and run R, e.g.:
 
 ```shell
 ssh testuser@localhost -p 2200
 R
 ```
+
+Or connect to RStudio in a web browser (see container documentation).
 
 The latest versions of the 4CE Docker container come pre-configured with this R library installed. To ensure that you have the latest version of this software, however, you should run the following in your R session in the container before proceeding:
 
@@ -61,12 +62,13 @@ You should replace "MyAnalysis" with the name of the project that you are creati
 
 After having installed the `FourCePhase2.1Utilities` R library (see above), in your command-line R session
 you can begin the process of creating the repositories for the "MyAnalysis" project with the following command 
-(you will be prompted for your GitHub username and password as the 
-repositories are created and pre-populated):
+(you will be prompted for your GitHub username and password as the repositories are created and pre-populated):
 
 ```
 FourCePhase2.1Utilities::createProject("MyAnalysis")
 ```
+
+If you are using RStudio, you may receive a message that states "The R session is currently busy. Are you sure you want to quit?".  Respond to this by clicking "No".
 
 This `createProject(...)` function call will generate all of the repositories required to support a 4CE Phase 2.1 project.  By default, 
 the local copies of these repositories are created under `/RDevelopment/` in the container. You can provide an alternative location by specifying the `workingDirectory` argument to `createProject(...)`.
