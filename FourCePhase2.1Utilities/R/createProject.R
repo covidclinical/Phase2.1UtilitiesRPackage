@@ -316,8 +316,14 @@ doInitializeAddCommit <- function(repositoryPath) {
 
 createGitHubRepositoryAndPush <- function(repositoryName, repositoryPath, private=FALSE) {
 
-    ## prompt for github username
+    ## use the git credential helper to retrieve (and store, if necessary) username and password
     credentials = getGitCredentials(protocol = "https", host = "github.com")
+
+    ## if that failed, report an error
+    if (is.na(creds[1])) {
+        stop("Unable to retrieve / store git credentials.")
+    }
+
     username = credentials["username"]
     password = credentials["password"]
 
@@ -348,7 +354,7 @@ createGitHubRepositoryAndPush <- function(repositoryName, repositoryPath, privat
         )
     )
 
-    ## push
+    ## push (git should use cached credentials here)
     system("git push -u origin master")
     
     ## return to the directory we were in when we started
