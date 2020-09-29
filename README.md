@@ -73,6 +73,8 @@ If you are using RStudio, you may receive a message that states "The R session i
 This `createProject(...)` function call will generate all of the repositories required to support a 4CE Phase 2.1 project.  By default, 
 the local copies of these repositories are created under `/RDevelopment/` in the container. You can provide an alternative location by specifying the `workingDirectory` argument to `createProject(...)`.
 
+If for some reason the interaction with GitHub fails (e.g., you entered an incorrect password, or you do not have permission to create repositories under the covidclinical GitHub organization), you will receive error messages in R, and will need to delete the local directories that were created by createProject() before re-attempting to create the project.
+
 You would now modify `runAnalysis()`, `validateAnalysis()`, `submitAnalysis()` inside of the 
 `Phase2.1MyAnalysisRPackage` repository.  Note that the R package lives in a subdirectory 
 of the repository named `FourCePhase2.1[PROJECT_NAME]` (`FourCePhase2.1MyAnalysis` in our example). The `README.md` for your package comes pre-populated with example code to install your package in R from this subdirectory.  You can add as much additional supporting code as you would like 
