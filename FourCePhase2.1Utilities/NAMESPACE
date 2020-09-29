@@ -2,3 +2,6 @@
 
 export(createProject)
 export(emit4CeFunctionStub)
+export(getGitCredentials)
+export(interactiveSetGitCredentials)
+export(setGitCredentials)
