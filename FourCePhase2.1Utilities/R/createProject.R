@@ -320,7 +320,7 @@ createGitHubRepositoryAndPush <- function(repositoryName, repositoryPath, privat
     credentials = getGitCredentials(protocol = "https", host = "github.com")
 
     ## if that failed, report an error
-    if (is.na(creds[1])) {
+    if (is.na(credentials[1])) {
         stop("Unable to retrieve / store git credentials.")
     }
 
