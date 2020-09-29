@@ -62,7 +62,7 @@ You should replace "MyAnalysis" with the name of the project that you are creati
 
 After having installed the `FourCePhase2.1Utilities` R library (see above), in your command-line R session
 you can begin the process of creating the repositories for the "MyAnalysis" project with the following command 
-(you will be prompted for your GitHub username and password as the repositories are created and pre-populated):
+(you will be prompted for your GitHub username and password as the repositories are created and pre-populated, and given the chance to review your credentials before proceeding):
 
 ```
 FourCePhase2.1Utilities::createProject("MyAnalysis")
