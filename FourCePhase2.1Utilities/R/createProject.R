@@ -122,8 +122,6 @@ createProject <- function (projectName, workingDirectory="/RDevelopment") {
     ## create the three required stubs for the R package
     createPhase2.1Stubs(projectName, rPackagePath, privateSummariesRepositoryName, publicSummariesRepositoryName)
 
-    writeLines("You will be prompted for your GitHub username and password a total of 6 times.\n")
-
     ## initialize git repositories
     doInitializeAddCommit(rPackageParentRepositoryPath)
     doInitializeAddCommit(privateSummariesRepositoryPath)
@@ -319,21 +317,23 @@ doInitializeAddCommit <- function(repositoryPath) {
 createGitHubRepositoryAndPush <- function(repositoryName, repositoryPath, private=FALSE) {
 
     ## prompt for github username
-    username = readline("GitHub username: ")
+    credentials = getGitCredentials(protocol = "https", host = "github.com")
+    username = credentials["username"]
+    password = credentials["password"]
 
     ## use GitHub API to create the remote
     if (private) {
         system(
             paste(
                 sep="",
-                "curl -u '", username, "' https://api.github.com/orgs/covidclinical/repos -d '{\"name\":\"", repositoryName, "\", \"private\":true}'"
+                "curl -u '", username, ":", password, "' https://api.github.com/orgs/covidclinical/repos -d '{\"name\":\"", repositoryName, "\", \"private\":true}'"
             )
         )
     } else {
         system(
             paste(
                 sep="",
-                "curl -u '", username, "' https://api.github.com/orgs/covidclinical/repos -d '{\"name\":\"", repositoryName, "\"}'"
+                "curl -u '", username, ":", password, "' https://api.github.com/orgs/covidclinical/repos -d '{\"name\":\"", repositoryName, "\"}'"
             )
         )
     }
