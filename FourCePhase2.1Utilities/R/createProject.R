@@ -139,8 +139,23 @@ createProject <- function (projectName, workingDirectory="/RDevelopment") {
 #' @param functionName The name of the function to be emitted.
 #' @param commentPreamble The preamble of the comments to be emitted.
 #' @param functionBody Any text to be included in the function body.
+#' @param deparsedBody Was the text in functionBody the result of a call to deparse()?
 
-emit4CeFunctionStub <- function (projectName, functionName, commentPreamble, functionBody="") {
+emit4CeFunctionStub <- function (projectName, functionName, commentPreamble, functionBody="", deparsedBody=FALSE) {
+    
+    ## if the function code was extracte via deparse() then paste the lines back together
+    if (deparsedBody) {
+        functionBody = paste(functionBody, collapse="\n")
+    }
+    ## otherwise prefix the code with function() and surround it with curly braces
+    else {
+        functionBody = paste0(
+"function() {
+", functionBody, "
+}
+")
+    }
+
     return(
         paste(
             sep="",
@@ -150,10 +165,7 @@ emit4CeFunctionStub <- function (projectName, functionName, commentPreamble, fun
 #' @keywords 4CE
 #' @export
 
-", functionName ," <- function() {
-", functionBody, "
-}
-"
+", functionName ," <- ", functionBody
         )
     )
 }
@@ -232,13 +244,14 @@ createPhase2.1Stubs <- function (projectName, workingDirectory, privateSummaries
         functionBody="\t#TODO: implement data submission"
     )
 
-    ## submitAnalysis()
+    ## submitAnalysis() comes from deparsing the function of the same name in this package
     emit4CeFunctionStubToFile(
         projectName=projectName, 
         functionName="submitAnalysis",
         workingDirectory=workingDirectory, 
         commentPreamble="Submits the results of the analytic workflow",
-        functionBody="\t#TODO: implement data submission"
+        functionBody=deparse(submitAnalysis),
+        deparsedBody=TRUE
     )
 
     ## getPrivateSummaryRepositoryUrl()
@@ -257,6 +270,16 @@ createPhase2.1Stubs <- function (projectName, workingDirectory, privateSummaries
         workingDirectory=workingDirectory, 
         commentPreamble="Returns the GitHub URL of the Public Summary Repository for this project",
         functionBody=paste(sep="", "\treturn(\"https://github.com/covidclinical/", publicSummariesRepositoryName, ".git\")")
+    )
+
+    ## getProjectOutputDirectory() comes from deparsing the function of the same name in this package
+    emit4CeFunctionStubToFile(
+        projectName=projectName, 
+        functionName="submitAnalysis",
+        workingDirectory=workingDirectory, 
+        commentPreamble="Returns the name of the project's output directory. runAnalysis() should save its output here, and submitAnalysis() will expect to read from this location. This function checks to make sure the location exists, and if not, creates it.",
+        functionBody=deparse(getProjectOutputDirectory),
+        deparsedBody=TRUE
     )
 }
 
