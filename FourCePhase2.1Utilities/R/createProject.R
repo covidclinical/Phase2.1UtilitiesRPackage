@@ -214,8 +214,20 @@ createPhase2.1Stubs <- function (projectName, workingDirectory, privateSummaries
     FourCePhase2.1Data::runQC(currSiteId)
 
     ## DO NOT CHANGE ANYTHING ABOVE THIS LINE
+
     ## To Do: implement analytic workflow, saving results to a site-specific 
     ## file to be sent to the coordinating site later via submitAnalysis()
+
+    ## Save results to appropriately named files for submitAnalysis(), e.g.:
+    write.csv(
+        matrix(rnorm(100), ncol=5), 
+        file=file.path(getProjectOutputDirectory(), paste0(currSiteId, "_ResultTable.csv"))
+    )
+
+    write.table(
+        matrix(rnorm(12), ncol=3), 
+        file=file.path(getProjectOutputDirectory(), paste0(currSiteId, "_ModelParameters.txt"))
+    )
     '
 
     ## runAnalysis()
