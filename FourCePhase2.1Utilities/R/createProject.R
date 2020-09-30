@@ -277,7 +277,7 @@ createPhase2.1Stubs <- function (projectName, workingDirectory, privateSummaries
     ## getProjectOutputDirectory() comes from deparsing the function of the same name in this package
     emit4CeFunctionStubToFile(
         projectName=projectName, 
-        functionName="submitAnalysis",
+        functionName="getProjectOutputDirectory",
         workingDirectory=workingDirectory, 
         commentPreamble="Returns the name of the project's output directory. runAnalysis() should save its output here, and submitAnalysis() will expect to read from this location. This function checks to make sure the location exists, and if not, creates it.",
         functionBody=deparse(getProjectOutputDirectory),
