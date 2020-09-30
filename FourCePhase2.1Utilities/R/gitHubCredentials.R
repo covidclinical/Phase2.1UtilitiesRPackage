@@ -39,7 +39,7 @@ interactiveSetGitCredentials <- function (protocol, host) {
 
     while (TRUE) {
         username = getPass::getPass(paste0("Enter your username for ", host, ": "))
-        password = getPass::getPass(paste0("Enter your password for ", host, ": "))
+        password = getPass::getPass(paste0("Enter your personal access token (see https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token) for ", host, ": "))
 
         ans = readline("Would you like to review your username and password before caching them? [y/N/cancel] ")
 

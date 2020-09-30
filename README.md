@@ -61,8 +61,8 @@ In the rest of this example, we will create a new project called "MyAnalysis". T
 You should replace "MyAnalysis" with the name of the project that you are creating before running the code.
 
 After having installed the `FourCePhase2.1Utilities` R library (see above), in your command-line R session
-you can begin the process of creating the repositories for the "MyAnalysis" project with the following command 
-(you will be prompted for your GitHub username and password as the repositories are created and pre-populated, and given the chance to review your credentials before proceeding):
+you can begin the process of creating the repositories for the "MyAnalysis" project with the following command.
+You will be prompted for your GitHub username and personal access token (PAT) as the repositories are created and pre-populated, and given the chance to review your credentials before proceeding.  For assistance creating a PAT, see [github documentation](https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/creating-a-personal-access-token).
 
 ```
 FourCePhase2.1Utilities::createProject("MyAnalysis")
