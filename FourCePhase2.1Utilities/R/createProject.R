@@ -236,16 +236,6 @@ createPhase2.1Stubs <- function (projectName, workingDirectory, privateSummaries
         functionBody="\t#TODO: implement validation"
     )
 
-    ## TODO: add code to push result files to github; may require too much bookkeeping w.r.t. generated files
-    ## submitAnalysis()
-    emit4CeFunctionStubToFile(
-        projectName=projectName, 
-        functionName="submitAnalysis",
-        workingDirectory=workingDirectory, 
-        commentPreamble="Submits the results of the analytic workflow",
-        functionBody="\t#TODO: implement data submission"
-    )
-
     ## submitAnalysis() comes from deparsing the function of the same name in this package
     emit4CeFunctionStubToFile(
         projectName=projectName, 
