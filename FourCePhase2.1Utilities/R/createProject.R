@@ -219,15 +219,15 @@ createPhase2.1Stubs <- function (projectName, workingDirectory, privateSummaries
     ## file to be sent to the coordinating site later via submitAnalysis()
 
     ## Save results to appropriately named files for submitAnalysis(), e.g.:
-    write.csv(
-        matrix(rnorm(100), ncol=5), 
-        file=file.path(getProjectOutputDirectory(), paste0(currSiteId, "_ResultTable.csv"))
-    )
+    #write.csv(
+    #    matrix(rnorm(100), ncol=5), 
+    #    file=file.path(getProjectOutputDirectory(), paste0(currSiteId, "_ResultTable.csv"))
+    #)
 
-    write.table(
-        matrix(rnorm(12), ncol=3), 
-        file=file.path(getProjectOutputDirectory(), paste0(currSiteId, "_ModelParameters.txt"))
-    )
+    #write.table(
+    #    matrix(rnorm(12), ncol=3), 
+    #    file=file.path(getProjectOutputDirectory(), paste0(currSiteId, "_ModelParameters.txt"))
+    #)
     '
 
     ## runAnalysis()
