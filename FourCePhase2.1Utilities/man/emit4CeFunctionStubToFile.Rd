@@ -5,7 +5,7 @@
 \title{Writes the result of calling emit4CeFunctionStub to a file named functionName.R}
 \usage{
 emit4CeFunctionStubToFile(projectName, functionName, commentPreamble,
-  workingDirectory, functionBody = "")
+  workingDirectory, functionBody = "", deparsedBody = FALSE)
 }
 \arguments{
 \item{projectName}{The name of the project.}
@@ -17,6 +17,8 @@ emit4CeFunctionStubToFile(projectName, functionName, commentPreamble,
 \item{workingDirectory}{The working directory into which the file will be written}
 
 \item{functionBody}{Any text to be included in the function body.}
+
+\item{deparsedBody}{Was the text in functionBody the result of a call to deparse()?}
 }
 \description{
 Writes the result of calling emit4CeFunctionStub to a file named functionName.R

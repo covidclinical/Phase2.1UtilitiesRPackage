@@ -3,5 +3,7 @@
 export(createProject)
 export(emit4CeFunctionStub)
 export(getGitCredentials)
+export(getProjectOutputDirectory)
 export(interactiveSetGitCredentials)
 export(setGitCredentials)
+export(submitAnalysis)

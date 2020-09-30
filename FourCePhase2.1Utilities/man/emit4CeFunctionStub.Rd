@@ -5,7 +5,7 @@
 \title{Returns the text of the empty R function call stub for the project}
 \usage{
 emit4CeFunctionStub(projectName, functionName, commentPreamble,
-  functionBody = "")
+  functionBody = "", deparsedBody = FALSE)
 }
 \arguments{
 \item{projectName}{The name of the project.}
@@ -14,7 +14,9 @@ emit4CeFunctionStub(projectName, functionName, commentPreamble,
 
 \item{commentPreamble}{The preamble of the comments to be emitted.}
 
-\item{functionBody}{Any text to be included in the function body.
+\item{functionBody}{Any text to be included in the function body.}
+
+\item{deparsedBody}{Was the text in functionBody the result of a call to deparse()?
 ", commentPreamble, " for the ", projectName, " project}
 }
 \description{

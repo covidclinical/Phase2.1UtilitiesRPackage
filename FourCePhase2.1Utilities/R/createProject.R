@@ -177,15 +177,17 @@ emit4CeFunctionStub <- function (projectName, functionName, commentPreamble, fun
 #' @param commentPreamble The preamble of the comments to be emitted.
 #' @param workingDirectory The working directory into which the file will be written
 #' @param functionBody Any text to be included in the function body.
+#' @param deparsedBody Was the text in functionBody the result of a call to deparse()?
 
-emit4CeFunctionStubToFile <- function (projectName, functionName, commentPreamble, workingDirectory, functionBody="") {
+emit4CeFunctionStubToFile <- function (projectName, functionName, commentPreamble, workingDirectory, functionBody="", deparsedBody=FALSE) {
 
     writeLines(
         emit4CeFunctionStub(
             projectName=projectName, 
             functionName=functionName, 
             commentPreamble=commentPreamble,
-            functionBody=functionBody
+            functionBody=functionBody,
+            deparsedBody=deparsedBody
         ), 
         con=file.path(workingDirectory, "R", paste(sep="", functionName, ".R"))
     )
