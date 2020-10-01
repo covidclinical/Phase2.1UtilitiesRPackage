@@ -285,6 +285,15 @@ createPhase2.1Stubs <- function (projectName, workingDirectory, privateSummaries
         functionBody=deparse(getProjectOutputDirectory),
         deparsedBody=TRUE
     )
+
+    ## getPublicSummaryRepositoryUrl()
+    emit4CeFunctionStubToFile(
+        projectName=projectName, 
+        functionName="smallCountObfuscation",
+        workingDirectory=workingDirectory, 
+        commentPreamble="Obfuscates small counts in result data for sites where IRBs require such",
+        functionBody="\t#TODO: implement obfuscation of small counts -- helper code coming soon"
+    )
 }
 
 #' Writes a placeholder README.md for a git repository
