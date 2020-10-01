@@ -2,7 +2,6 @@
 #' Submits the results of the analytic workflow for the project
 #' 
 #' @keywords 4CE
-#' @export
 
 submitAnalysis <- function() {
 	

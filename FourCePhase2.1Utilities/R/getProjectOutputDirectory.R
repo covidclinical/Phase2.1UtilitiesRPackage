@@ -3,7 +3,6 @@
 #' This function checks to make sure the location exists, and if not, creates it.
 #'
 #' @keywords 4CE
-#' @export
 
 getProjectOutputDirectory <- function(){
 
