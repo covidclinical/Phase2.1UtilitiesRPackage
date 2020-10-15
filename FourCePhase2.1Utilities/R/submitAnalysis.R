@@ -71,14 +71,30 @@ submitAnalysis <- function() {
 	## create a new branch named after the site identifier
 	setwd(localRepositoryDirectory)
 	branchName = paste0("topic-", siteId)
-	system(
-        paste0("git branch ", branchName)
-    )
 
-	## checkout new branch
-	system(
-        paste0("git checkout ", branchName)
-    )
+	## check whether there is already a branch for this site on the remote
+	branches = system(paste0("git branch -a"), intern=TRUE)
+	branchIx = grep(branches, pattern=paste0("origin/", branchName), fixed=TRUE)
+
+	## if there is one, check it out
+	if (length(branchIx) == 1) {
+		paste0("git checkout ", branchName)
+	}
+	else {
+		system(
+			paste0("git branch ", branchName)
+		)
+
+		## checkout new branch
+		system(
+			paste0("git checkout ", branchName)
+		)
+
+		## push the new branch to the remote
+		system(
+				paste0("git push --set-upstream origin ", branchName)
+		)
+	}
 
 	## add site's result files to branch
 	## projectOutputFiles contains fully-qualified file names
@@ -99,9 +115,9 @@ submitAnalysis <- function() {
 		)
     )
 
-	## push on the new branch
+	## push to the remote
 	system(
-			paste0("git push --set-upstream origin ", branchName)
+		paste0("git push")
 	)
 
 	## return to original directory
