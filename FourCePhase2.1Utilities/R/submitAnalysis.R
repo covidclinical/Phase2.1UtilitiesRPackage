@@ -78,7 +78,9 @@ submitAnalysis <- function() {
 
 	## if there is one, check it out
 	if (length(branchIx) == 1) {
-		paste0("git checkout ", branchName)
+		system(
+			paste0("git checkout ", branchName)
+		)
 	}
 	else {
 		system(
