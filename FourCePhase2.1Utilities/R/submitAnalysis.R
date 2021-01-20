@@ -59,10 +59,10 @@ submitAnalysis <- function() {
 			x = dataRepositoryUrl, 
 			pattern="https://github.com/covidclinical/", 
 			fixed=TRUE, 
-			replace=""), 
+			replacement=""), 
 		pattern=".git", 
 		fixed=TRUE, 
-		replace="")
+		replacement="")
 	localRepositoryDirectory = file.path(workDirectory, repositoryName)
 	system(
         paste0("git clone ", dataRepositoryUrl, " ", localRepositoryDirectory)
