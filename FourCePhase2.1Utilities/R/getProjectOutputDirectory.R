@@ -13,12 +13,12 @@ getProjectOutputDirectory <- function(){
 			x = dataRepositoryUrl, 
 			pattern="https://github.com/covidclinical/", 
 			fixed=TRUE, 
-			replace=""), 
+			replacement=""), 
 		pattern=".git", 
 		fixed=TRUE, 
-		replace="")
+		replacement="")
 	
-	projectName = gsub(x = repositoryName, pattern = "SummariesPublic", replace = "", fixed = TRUE)
+	projectName = gsub(x = repositoryName, pattern = "SummariesPublic", replacement = "", fixed = TRUE)
 	
     ## concatenate project name to global 4CE output directory
     dirName = file.path(
