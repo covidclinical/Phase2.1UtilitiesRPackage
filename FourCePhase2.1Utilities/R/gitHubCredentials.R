@@ -93,15 +93,22 @@ queryGitCredentialHelper <- function(protocol, host) {
     tmpErr = tempfile()
 
     ## put the input to the credential manager in the temp file that will land on stdin
-    writeLines(con=tmpIn, creds)
-    
-    ## call the credential manager, need to run in a new session to supress prompt output
+    writeLines(con = tmpIn, creds)
+
+    # call the credential manager, need to run in a new session and set GIT_ASKPASS
+    # to "" in order to supress prompt in both RStudio Server session and in R console
+    gitAskpassTmp = Sys.getenv("GIT_ASKPASS")
+    Sys.setenv(GIT_ASKPASS = "")
+
     sys::exec_wait(
         cmd="setsid", 
         args=c("git", "credential", "fill"), 
         std_in=tmpIn, 
         std_out=tmpOut,
         std_err=tmpErr)
+
+    # reset environment variable to default value
+    Sys.setenv(GIT_ASKPASS = gitAskpassTmp)
 
     ## retrieve whatever was left on STDOUT and STDERR
     cachedCreds = readLines(tmpOut)
