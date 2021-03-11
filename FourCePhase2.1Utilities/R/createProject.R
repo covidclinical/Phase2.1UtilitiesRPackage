@@ -398,7 +398,11 @@ createGitHubRepositoryAndPush <- function(repositoryName, repositoryPath, privat
         ## sleep for a second
         Sys.sleep(1)
 
-        ## check the remote
+        ## check the remote: system2() reports any non-zero exit as a warning,
+        ## supress that by brute force (we should look for a more elegant solution)
+        warnDefault = getOption("warn")
+        options(warn = -1)
+
         response = system2(
             stderr = TRUE,
             stdout = TRUE,
@@ -407,6 +411,9 @@ createGitHubRepositoryAndPush <- function(repositoryName, repositoryPath, privat
                 "ls-remote https://github.com/covidclinical/", repositoryName, ".git"
             )
         )
+
+        ## return default warning behavior
+        options(warn = warnDefault)
 
         # if the repo still isn't showing up
         if (
@@ -427,8 +434,8 @@ createGitHubRepositoryAndPush <- function(repositoryName, repositoryPath, privat
     if (i >= nWaitCycles) {
         stop(
             paste0(
-                "GitHub remote repository was not available after ", 
-                nWaitCycles, " tries.  Aborting before push to origin."
+                "GitHub remote repository ", repositoryName, " was not available after ", 
+                nWaitCycles, " tries.  Aborting before git push -u origin master"
             )
         )
     }
