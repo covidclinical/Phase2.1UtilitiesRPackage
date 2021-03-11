@@ -390,9 +390,52 @@ createGitHubRepositoryAndPush <- function(repositoryName, repositoryPath, privat
         )
     )
 
+    ## run a loop waiting for github to show the repository as available
+    nWaitCycles = 30
+    i = 0
+    while (i < nWaitCycles) {
+
+        ## sleep for a second
+        Sys.sleep(1)
+
+        ## check the remote
+        response = system2(
+            stderr = TRUE,
+            stdout = TRUE,
+            command = "git",
+            args = paste0(
+                "ls-remote https://github.com/covidclinical/", repositoryName, ".git"
+            )
+        )
+
+        # if the repo still isn't showing up
+        if (
+            length(
+                grep(x = response, pattern = "Repository not found.", fixed = TRUE)
+            ) > 0
+        ) {
+            # keep looping
+            i = i + 1
+        } else {
+            # otherwise break the loop
+            break()
+        }
+    }
+
+    ## if we waited the specified number of times, and the repo still wasn't available,
+    ## throw an error
+    if (i >= nWaitCycles) {
+        stop(
+            paste0(
+                "GitHub remote repository was not available after ", 
+                nWaitCycles, " tries.  Aborting before push to origin."
+            )
+        )
+    }
+
     ## push (git should use cached credentials here)
     system("git push -u origin master")
-    
+
     ## return to the directory we were in when we started
     setwd(originalDirectory)
 }
