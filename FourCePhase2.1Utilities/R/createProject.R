@@ -412,7 +412,7 @@ createGitHubRepositoryAndPush <- function(repositoryName, repositoryPath, privat
             )
         )
 
-        ## return default warning behavior
+        ## restore default warning behavior
         options(warn = warnDefault)
 
         # if the repo still isn't showing up
